@@ -22,10 +22,10 @@ int partition(int* arr, int left, int right)
 			small++;
 			swap(arr[small], arr[i]);
 		}
-		swap(arr[i + 1], key);
 	}
+	swap(arr[small + 1], key);
 
-	return i + 1;
+	return small + 1;
 }
 
 int quick_sort(int*arr, int left, int right)
@@ -53,6 +53,8 @@ int main(int argc, char** argv)
 {
 	int arr[] = {7, 3, 8, 5, 2, 10, 5};
 
+	int q = partition(arr, 0, 6);
+	std::cout << "q is " << q << std::endl;
 	quick_sort(arr, 0, 6);
 	return 0;
 }
