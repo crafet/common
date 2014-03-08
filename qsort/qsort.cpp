@@ -9,23 +9,33 @@
   after first round partiton for element 5
   arr = {3, 5, 2, 5*, 8, 10, 7}
 */
-void swap(int, int);
+void swap(int&, int&);
+void print_array(int*, int);
 
 int partition(int* arr, int left, int right)
 {
 	int key = arr[right];
-	int i = 0;
-	int small = i - 1;
-	for (i = 0; i < right; i++) {
+	
+	int curpos = left;//从第一个元素下标开始索引
+	for (int i = left + 1; i < right; i++) {
 		// we dont need to compare key with arr[right]
-		if (arr[i] <= key) {
-			small++;
-			swap(arr[small], arr[i]);
+		if (arr[i] < key) {
+			swap(arr[curpos], arr[i]);
+			curpos++;
 		}
 	}
-	swap(arr[small + 1], key);
+	swap(arr[curpos], arr[right]);
 
-	return small + 1;
+	print_array(arr, right - left + 1);
+	return curpos;
+}
+
+void print_array(int* arr, int size)
+{
+	for (int i = 0; i < size; i++) {
+		std::cout << arr[i] << " ";
+	}
+	std::cout << std::endl;
 }
 
 int quick_sort(int*arr, int left, int right)
@@ -38,7 +48,7 @@ int quick_sort(int*arr, int left, int right)
 	return 0;
 }
 
-void swap(int left, int right)
+void swap(int& left, int& right)
 {
 	int tmp = left;
 	left = right;
@@ -52,9 +62,12 @@ void swap(int left, int right)
 int main(int argc, char** argv)
 {
 	int arr[] = {7, 3, 8, 5, 2, 10, 5};
-
+	std::cout << "original array  is :";
+	print_array(arr, 7);
 	int q = partition(arr, 0, 6);
 	std::cout << "q is " << q << std::endl;
 	quick_sort(arr, 0, 6);
+	print_array(arr, 7);
 	return 0;
 }
+
