@@ -1,0 +1,8 @@
+// 2013-03-09
+// 这里测试调用select
+
+// server端开1000个port进行监听，然后run起server:./server/server
+
+// client的模拟连接在run.sh中完成.其中模拟随机产生端口，连接server
+
+// server端会block在select上，选择可用fd应答客户端

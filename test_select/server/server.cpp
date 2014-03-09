@@ -14,7 +14,7 @@
 #include <stdio.h>
 
 // try to build 1000 port for select
-const unsigned int MAX_PORT_NUM = 2000;
+const unsigned int MAX_PORT_NUM = 1000; // select 最大支持1024个fd
 const unsigned int START_PORT_NUM = 7777;// start port num
 
 int build_listen(unsigned int port)
