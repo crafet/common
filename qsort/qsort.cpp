@@ -19,14 +19,13 @@ int partition(int* arr, int left, int right)
 	int curpos = left;//从第一个元素下标开始索引
 	for (int i = left + 1; i < right; i++) {
 		// we dont need to compare key with arr[right]
-		if (arr[i] < key) {
+		if (arr[i] <= key) {
 			swap(arr[curpos], arr[i]);
 			curpos++;
 		}
 	}
 	swap(arr[curpos], arr[right]);
 
-	print_array(arr, right - left + 1);
 	return curpos;
 }
 
@@ -44,6 +43,7 @@ int quick_sort(int*arr, int left, int right)
 		int q = partition(arr, left, right);
 		quick_sort(arr, left, q - 1);
 		quick_sort(arr, q + 1, right);
+		print_array(arr, right - left + 1);	
 	}
 	return 0;
 }
